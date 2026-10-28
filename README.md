@@ -27,19 +27,17 @@ GitHub에서 PDF와 posts.js를 수정하면 배포 후 반영됩니다.
   example: false,
   topic: "Multimodal",
   title: "논문의 실제 제목",
-  subtitle: "카드에 표시할 짧은 설명",
+  subtitle: "목록에 표시할 짧은 설명",
   cover: "Multimodal\nLearning",
   presenter: "발표자 이름",
   date: "2026-10-28",
   paper: "https://arxiv.org/abs/실제논문번호",
+  author: "논문 저자 이름",
+  venue: "학회 / 저널명 (예: NeurIPS 2026)",
   code: "",
   pdf: "slides/2026-10-28-paper-title.pdf",
   summary: "한 문장 요약",
-  limitations: "기존 방식의 한계",
-  method: "제안 방법의 핵심",
-  evaluation: "데이터셋, 비교 대상, 평가 지표와 결과",
-  discussion: "질문 1과 논의 내용\n질문 2와 후속 연구 아이디어",
-  references: "추가 참고 자료"
+  discussion: "질문 1과 논의 내용\n질문 2와 후속 연구 아이디어"
 },
 ```
 
