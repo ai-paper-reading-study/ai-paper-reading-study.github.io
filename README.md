@@ -1,20 +1,6 @@
-# AI Paper Reading Study — 운영 안내
+# AI Paper Reading Study
 
-## 1. GitHub Pages 배포
-1. ZIP을 압축 해제합니다.
-2. GitHub에서 Public 저장소 `ai-paper-reading-study`를 만듭니다.
-3. Add file → Upload files에서 압축 해제한 파일들을 업로드하고 Commit changes를 누릅니다. ZIP 자체나 바깥 폴더가 아니라 index.html이 저장소 첫 화면에 바로 보이도록 올립니다.
-4. Settings → Pages → Build and deployment → Source: Deploy from a branch → Branch: main, 폴더: /(root) → Save.
-5. Actions에서 배포가 완료되면 Settings → Pages의 Visit site로 확인합니다.
-6. 주소는 https://사용자명.github.io/ai-paper-reading-study/ 입니다.
-
-사용자 대표 주소 https://사용자명.github.io/ 를 원하면 저장소 이름을 사용자명.github.io 로 만드세요. 기존 개인 홈페이지가 있다면 별도의 ai-paper-reading-study 저장소를 쓰면 됩니다.
-
-공식 문서:
-https://docs.github.com/en/pages/quickstart
-https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
-
-## 2. 파일 역할
+## 파일 역할
 - index.html: 페이지 구조와 메뉴
 - style.css: 디자인
 - posts.js: 발표 기록, 요약, PDF 경로
@@ -23,8 +9,8 @@ https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a
 - slides/: 발표 PDF 보관
 - .nojekyll: Jekyll 처리 생략 (숨김 파일이 표시되지 않으면 GitHub Add file → Create new file에서 생성 가능)
 
-## 3. 발표자료 게시
-이 사이트는 정적 사이트이므로 사이트 안에서 업로드하는 관리 화면은 없습니다. GitHub에서 PDF와 posts.js를 수정하면 배포 후 반영됩니다.
+## 발표자료 게시
+GitHub에서 PDF와 posts.js를 수정하면 배포 후 반영됩니다.
 
 1. 발표자료를 PDF로 내보냅니다. 파일명은 `2026-10-28-paper-title.pdf`처럼 영문·숫자·하이픈을 사용하세요.
 2. 저장소에 `slides/` 폴더를 만듭니다. GitHub의 Add file → Create new file에서 `slides/.gitkeep` 파일을 만들면 됩니다. 이미 폴더가 있으면 생략합니다.
@@ -67,7 +53,7 @@ https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a
 - PDF 미리보기를 지원하지 않는 브라우저에서는 PDF 열기 / 저장 링크를 사용합니다.
 - .md 파일만 올려서는 새 카드가 생성되지 않습니다. posts.js에 항목을 추가해야 합니다.
 
-## 4. 멤버 소개 수정
+## 멤버 소개 수정
 members.js에서 각 사람의 따옴표 안 값을 수정합니다.
 
 ```js
@@ -91,14 +77,12 @@ const members = [
 
 빈 값은 입력 예정으로 표시됩니다. GitHub는 새 탭에서 열리고 이메일은 기본 이메일 앱으로 연결됩니다. 이름·이메일 등에는 실제 공개할 정보를 넣으세요.
 
-## 5. 공동 운영
-저장소 Settings → Collaborators에서 동기의 GitHub 계정을 초대하면 함께 수정할 수 있습니다. 동시 수정 충돌을 줄이려면 서로 다른 브랜치에서 편집 후 Pull request로 합치거나, 번갈아 수정하세요.
+## 공동 운영
+저장소 Settings → Collaborators에서 GitHub 계정을 초대하면 함께 수정할 수 있습니다. 동시 수정 충돌을 줄이려면 서로 다른 브랜치에서 편집 후 Pull request로 합치거나, 번갈아 수정하세요.
 
-## 6. 문제가 생기면
+## 문제가 생기면
 - 사이트가 안 열림: Settings → Pages의 브랜치와 /(root), 루트의 index.html을 확인합니다.
 - 수정이 안 보임: Actions의 배포 완료를 확인한 뒤 Ctrl+Shift+R로 새로고침합니다.
 - 카드가 사라짐: posts.js의 쉼표, 따옴표, 대괄호를 확인합니다.
 - PDF 404: 경로와 파일 이름 및 대소문자를 확인합니다.
 - GitHub 웹 업로드 파일 한도는 파일당 25 MiB입니다. 더 큰 PDF는 압축하거나 Git으로 올리세요. 일반 Git 저장소는 100 MiB 초과 파일을 차단합니다.
-
-현재 ChatGPT Site와 GitHub Pages는 별도 배포입니다. 이후 한쪽에서 수정한 내용이 다른 쪽에 자동 동기화되지는 않습니다. GitHub로 이전한 후에는 해당 저장소를 기준으로 관리하세요.
