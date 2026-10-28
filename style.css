@@ -21,3 +21,5 @@
 .pagination button[aria-current="page"]{background:var(--green);border-color:var(--green);color:var(--cream)}
 .pagination button:disabled{opacity:.35;cursor:default}.pagination button:not(:disabled):hover{border-color:var(--green)}
 .pagination span{align-self:center;padding:0 3px}
+
+.paper-info{margin:20px 0;font-size:12px;line-height:1.8}.paper-info>div{display:grid;grid-template-columns:90px minmax(0,1fr);gap:12px;margin:6px 0}.paper-info dt{font-weight:700}.paper-info dd{margin:0;color:var(--muted);overflow-wrap:anywhere}
