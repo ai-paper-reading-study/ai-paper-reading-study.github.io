@@ -3,19 +3,51 @@
 // 새 게시물은 README.md의 양식을 복사해 추가하세요.
 const posts = [
 {
-  id: "2026-09-22-e3",
-  number: "02", // 우리 스터디 회차 번호
+  id: "2026-10-08-NExT-GPT",
+  number: "03", // 우리 스터디 회차 번호
   example: false, // 딱히 상관 없음
+  topic: ["Multimodal", "LLM", "Any-to-Any Generation"],
+  title: "NExT-GPT",
+  subtitle: "Any-to-Any Multimodal LLM",
+  cover: "NExT-GPT", // 갤러리형일때만 표시됨. 지금은 리스트형이라서 화면에 표시 X
+  presenter: "이정연",
+  date: "2026-10-08", // 발표 날짜
+  paper: "https://arxiv.org/abs/2309.05519",
+  author: "Shengqiong Wu, et al.",
+  venue: "ICML 2024 (Oral)",
+  code: "", // 논문이 공개한 깃허브 등 코드 있다면 링크 첨부 가능
+  pdf: "slides/2026-10-08-NExT-GPT.pdf",
+  summary: "NExT-GPT introduces an end-to-end any-to-any multimodal LLM that integrates pretrained multimodal encoders and diffusion decoders through lightweight input/output projection layers, leveraging modality-specific signal tokens and modality-switching instruction tuning (MosIT) to enable unified understanding and generation across text, image, audio, and video.",
+  discussion: `#### Limitations
+
+1. **Incomplete quantitative evaluation:** The evaluation does not systematically cover all possible input–output modality combinations.
+2. **Limited consistency and robustness assessment:** Cross-modal output consistency and error propagation over extended multi-turn conversations remain insufficiently evaluated.
+3. **Potential biases in synthetic instruction data:** The reliance on GPT-4-generated instructions in MosIT raises questions about dataset bias and generalization to unseen scenarios.
+4. **Lack of system-level efficiency analysis:** Despite updating only about 1% of model parameters, end-to-end inference latency, memory usage, and computational costs are not comprehensively compared.
+
+#### Future Directions
+
+1. **Scalability to new modalities:** Investigate how much additional alignment training is required when introducing new modalities or replacing pretrained decoders.
+2. **Model and data scaling:** Examine the independent effects of LLM capacity and instruction-tuning dataset size on multimodal understanding and generation.
+3. **Retrieval-augmented generation:** Explore whether incorporating retrieval mechanisms improves factual accuracy and cross-modal consistency.
+4. **Generalization of MosIT:** Evaluate whether modality-switching instruction tuning generalizes to unseen modality transitions and input–output combinations.
+`
+},
+  
+{
+  id: "2026-09-22-e3",
+  number: "02",
+  example: false,
   topic: ["LLM", "Reasoning", "Test-Time Compute"],
   title: "e3",
   subtitle: "Learning to Explore Enables Extrapolation of Test-Time Compute for LLMs",
-  cover: "e3", // 갤러리형일때만 표시됨. 지금은 리스트형이라서 화면에 표시 X
+  cover: "e3",
   presenter: "이정연",
-  date: "2026-09-22", // 발표 날짜
+  date: "2026-09-22",
   paper: "https://arxiv.org/abs/2506.09026",
   author: "Amrith Setlur, et al.",
   venue: "ICLR 2026 (Poster)",
-  code: "", // 논문이 공개한 깃허브 등 코드 있다면 링크 첨부 가능
+  code: "",
   pdf: "slides/2026-09-22-e3.pdf",
   summary: "e³ enables LLMs to extrapolate reasoning performance beyond their training token budgets by promoting in-context exploration through chaining asymmetric capabilities (e.g., verification and generation), leveraging negative policy gradients from failed reasoning traces, and coupling problem difficulty with training token budgets during reinforcement learning.",
   discussion: `#### Limitations: Causal Mechanisms
@@ -34,14 +66,15 @@ const posts = [
 **Key Research Question:** Which asymmetries enable genuinely new solution paths rather than merely longer reformulations?
 `
 },
+  
 {
   id: "2026-09-16-CLEAR",
-  number: "01", // 우리 스터디 회차 번호
+  number: "01",
   example: false,
   topic: ["NLP", "Retrieval", "Multilingual"],
   title: "CLEAR",
   subtitle: "Cross-Lingual Enhancement in Retrieval via Reverse-training",
-  cover: "CLEAR", // 갤러리형일때만 표시됨. 지금은 리스트형이라서 화면에 표시 X
+  cover: "CLEAR",
   presenter: "이정연",
   date: "2026-09-16",
   paper: "https://arxiv.org/abs/2604.05821",
