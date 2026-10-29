@@ -23,3 +23,13 @@
 .pagination span{align-self:center;padding:0 3px}
 
 .paper-info{margin:20px 0;font-size:12px;line-height:1.8}.paper-info>div{display:grid;grid-template-columns:90px minmax(0,1fr);gap:12px;margin:6px 0}.paper-info dt{font-weight:700}.paper-info dd{margin:0;color:var(--muted);overflow-wrap:anywhere}
+
+.tags{flex-wrap:wrap}.paper-info>div{grid-template-columns:minmax(100px,150px) minmax(0,1fr)}
+.markdown-body{line-height:1.9;overflow-wrap:anywhere}.markdown-body>:first-child{margin-top:14px}
+#article .markdown-body h1{font-size:26px;letter-spacing:-.5px;line-height:1.5;margin:24px 0 12px}
+#article .markdown-body h2{font-size:22px;margin:22px 0 10px}#article .markdown-body h3{font-size:18px;margin:20px 0 8px}
+.markdown-body h4,.markdown-body h5,.markdown-body h6{font-size:15px;margin:18px 0 8px}
+.markdown-body a{text-decoration:underline;text-underline-offset:3px}.markdown-body img{max-width:100%;height:auto}
+.markdown-body blockquote{margin:16px 0;padding:1px 16px;border-left:3px solid var(--mint);background:#00462a05}
+.markdown-body pre{overflow-x:auto;padding:16px;background:#00462a08}.markdown-body code{font-family:monospace;background:#00462a08;padding:2px 4px}.markdown-body pre code{background:none;padding:0}
+.markdown-body table{display:block;overflow-x:auto;border-collapse:collapse}.markdown-body th,.markdown-body td{border:1px solid var(--line);padding:8px 12px}.markdown-body ul,.markdown-body ol{padding-left:24px}
