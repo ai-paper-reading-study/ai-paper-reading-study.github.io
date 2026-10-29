@@ -9,7 +9,7 @@ const posts = [
   topic: ["LLM", "Reasoning", "Test-Time Compute"],
   title: "e3",
   subtitle: "Learning to Explore Enables Extrapolation of Test-Time Compute for LLMs",
-  cover: e3", // 갤러리형일때만 표시됨. 지금은 리스트형이라서 화면에 표시 X
+  cover: "e3", // 갤러리형일때만 표시됨. 지금은 리스트형이라서 화면에 표시 X
   presenter: "이정연",
   date: "2026-09-22", // 발표 날짜
   paper: "https://arxiv.org/abs/2506.09026",
