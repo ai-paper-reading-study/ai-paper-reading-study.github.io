@@ -24,56 +24,32 @@ GitHub에서 PDF와 posts.js를 수정하면 배포 후 반영됩니다.
 
 ```js
 {
-
-id: "2026-09-16-paper-title",
-
-number: "01", // 우리 스터디 회차 번호
-
-example: false, // 딱히 상관 없음
-
-topic: ["NLP", "Retrieval", "Multilingual"],
-
-title: "논문 제목",
-
-subtitle: "부제목 (논문 자체의 부제목으로 쓰거나 자기가 새로 쓰거나 맘대로...)",
-
-cover: "CLEAR", // 갤러리형일때만 표시됨. 지금은 리스트형이라서 화면에 표시 X
-
-presenter: "발표자 이름",
-
-date: "2026-09-16", // 발표 날짜
-
-paper: "https://arxiv.org/abs/실제논문번호",
-
-author: "논문 저자 이름",
-
-venue: "학회 / 저널명 (예: NeurIPS 2026)",
-
-code: "", // 논문이 공개한 깃허브 등 코드 있다면 링크 첨부 가능
-
-pdf: "slides/2026-09-16-paper-title.pdf",
-
-summary: "한 문장 요약",
-
-discussion: `### 마크다운 형식 사용 가능
-
-
+  id: "2026-09-16-paper-title",
+  number: "01", // 우리 스터디 회차 번호
+  example: false, // 딱히 상관 없음
+  topic: ["NLP", "Retrieval", "Multilingual"],
+  title: "논문 제목",
+  subtitle: "부제목 (논문 자체의 부제목으로 쓰거나 자기가 새로 쓰거나 맘대로...)",
+  cover: "CLEAR", // 갤러리형일때만 표시됨. 지금은 리스트형이라서 화면에 표시 X
+  presenter: "발표자 이름",
+  date: "2026-09-16", // 발표 날짜
+  paper: "https://arxiv.org/abs/실제논문번호",
+  author: "논문 저자 이름",
+  venue: "학회 / 저널명 (예: NeurIPS 2026)",
+  code: "", // 논문이 공개한 깃허브 등 코드 있다면 링크 첨부 가능
+  pdf: "slides/2026-09-16-paper-title.pdf",
+  summary: "한 문장 요약",
+  discussion: `### 마크다운 형식 사용 가능
 
 #### 1. 첫 번째 주제
-
-
 
 논의 내용 **강조 가능**
 
 - 리스트 작성 가능
-
 - 리스트 작성 가능
-
-
 
 #### 2. 두 번째 주제
 `
-
 },
 ```
 
