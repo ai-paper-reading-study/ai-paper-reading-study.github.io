@@ -3,38 +3,22 @@
 // 새 게시물은 README.md의 양식을 복사해 추가하세요.
 const posts = [
 {
-
-id: "2026-09-22-e3",
-
-number: "02", // 우리 스터디 회차 번호
-
-example: false, // 딱히 상관 없음
-
-topic: ["LLM", "Reasoning", "Test-Time Compute"],
-
-title: "e3",
-
-subtitle: "Learning to Explore Enables Extrapolation of Test-Time Compute for LLMs",
-
-cover: e3", // 갤러리형일때만 표시됨. 지금은 리스트형이라서 화면에 표시 X
-
-presenter: "이정연",
-
-date: "2026-09-22", // 발표 날짜
-
-paper: "https://arxiv.org/abs/2506.09026",
-
-author: "Amrith Setlur, et al.",
-
-venue: "ICLR 2026 (Poster)",
-
-code: "", // 논문이 공개한 깃허브 등 코드 있다면 링크 첨부 가능
-
-pdf: "slides/2026-09-22-e3.pdf",
-
-summary: "e³ enables LLMs to extrapolate reasoning performance beyond their training token budgets by promoting in-context exploration through chaining asymmetric capabilities (e.g., verification and generation), leveraging negative policy gradients from failed reasoning traces, and coupling problem difficulty with training token budgets during reinforcement learning.",
-
-discussion: `#### Limitations: Causal Mechanisms
+  id: "2026-09-22-e3",
+  number: "02", // 우리 스터디 회차 번호
+  example: false, // 딱히 상관 없음
+  topic: ["LLM", "Reasoning", "Test-Time Compute"],
+  title: "e3",
+  subtitle: "Learning to Explore Enables Extrapolation of Test-Time Compute for LLMs",
+  cover: e3", // 갤러리형일때만 표시됨. 지금은 리스트형이라서 화면에 표시 X
+  presenter: "이정연",
+  date: "2026-09-22", // 발표 날짜
+  paper: "https://arxiv.org/abs/2506.09026",
+  author: "Amrith Setlur, et al.",
+  venue: "ICLR 2026 (Poster)",
+  code: "", // 논문이 공개한 깃허브 등 코드 있다면 링크 첨부 가능
+  pdf: "slides/2026-09-22-e3.pdf",
+  summary: "e³ enables LLMs to extrapolate reasoning performance beyond their training token budgets by promoting in-context exploration through chaining asymmetric capabilities (e.g., verification and generation), leveraging negative policy gradients from failed reasoning traces, and coupling problem difficulty with training token budgets during reinforcement learning.",
+  discussion: `#### Limitations: Causal Mechanisms
 
 - **Confounded VG gap:** Mult-V's verification-rich SFT may also alter arithmetic ability, response length, and entropy, making it difficult to isolate the effect of verification.
 - **Surface-level verification metrics:** Verification counts do not necessarily reflect genuine error detection or correction and may increase simply with response length.
