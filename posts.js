@@ -3,6 +3,70 @@
 // 새 게시물은 README.md의 양식을 복사해 추가하세요.
 const posts = [
 {
+  id: "2026-10-27-TUD",
+  number: "04",
+  example: false,
+  topic: ["Robotics","VLA","Adaptive Inference"],
+  title: "TUD",
+  subtitle: "Triggering Generalist Reasoning via Predictive Uncertainty for Dual-System VLA",
+  cover: "TUD",
+  presenter: "정선영",
+  date: "2026-10-27",
+  paper: "https://arxiv.org/abs/2610.05025",
+  author: "Hyemin Yang, Wooseong Jeong, Giwon Lee, Kuk-Jin Yoon",
+  venue: "NeurIPS 2026",
+  code: "",
+  pdf: "slides/2026-10-27-TUD.pdf",
+  summary: "TUD enables adaptive generalist invocation in dual-system VLA models by measuring the cross-step dispersion of action re-predictions under cached context, reusing existing model forwards without phase annotations or an auxiliary uncertainty model to improve the success–computation trade-off and reduce generalist calls by 75% in real-robot experiments relative to the strongest fixed-interval baseline while increasing success.",
+  discussion: `### Idea & Discussion
+
+#### Learnable Maximum Invocation Interval
+- **Limitation:** A fixed maximum invocation interval limits the ability to account for situation-dependent rates of change when handling drift.
+- **Motivation:** If predictions change gradually, could their deviation from the initial plan accumulate even when dispersion remains low?
+- **Idea:** Learn a policy that adjusts the maximum invocation interval according to observation changes and prediction trends, shortening it when changes accumulate and extending it during stable periods.
+
+#### Fixed Buffer Size and Re-Prediction Interval
+- **Motivation:** Could fixing the buffer size at five and the re-prediction interval at two steps be as rigid as invoking the generalist at a static frequency?
+- **Validation in Appendix C:** The slide presents an ablation table comparing success rates and call counts across buffer sizes, measurement intervals, decision intervals, and maximum invocation intervals.
+
+### QA 🙋
+
+- 고정된 호출 간격 대신 Generalist를 적응적·유연하게 호출하는 기존 연구도 있지 않은가?  
+  ➡️ 관련 연구로 OneTwoVLA가 있었지만, action phase boundary를 annotation한 뒤 활용하는 방식이었다. 이외에 직접 비교할 만한 관련 연구는 없었던 것 같다.
+
+- Baseline은 어떤 기준으로 선정했는가? Generalist를 고정 주기로 호출하는 모델만 포함했는지, dual-system VLA가 아닌 방법도 포함했는지 궁금하다.  
+  ➡️ 실험 분석은 제안 모델 구조를 평가하는 ablation에 중점을 두었으며, baseline은 성능이 좋은 VLA들을 중심으로 선정했다.`
+},
+  
+{
+  id: "2026-10-08-ReSplat",
+  number: "03",
+  example: false,
+  topic: ["3D Gaussian Splatting","Novel View Synthesis","Image Restoration"],
+  title: "ReSplat",
+  subtitle: "Degradation-agnostic Feed-forward Gaussian Splatting via Self-guided Residual Diffusion",
+  cover: "ReSplat",
+  presenter: "정선영",
+  date: "2026-10-08",
+  paper: "https://openreview.net/forum?id=461VpgnLsi",
+  author: "Youngho Yoon, Kuk-Jin Yoon",
+  venue: "ICLR 2026 (Poster)",
+  code: "https://github.com/yh-yoon/ReSplat",
+  pdf: "slides/2026-10-08-ReSplat.pdf",
+  summary: "ReSplat introduces a degradation-agnostic novel-view synthesis framework that jointly restores multi-view images and predicts a Gaussian scene representation, using 3D Gaussians generated during diffusion sampling as self-guidance to improve cross-view consistency and rendering quality under blur, low light, haze, rain, and snow.",
+  discussion: `### Idea & Discussion
+
+#### Insufficient Justification for Three-View Input
+- The supplementary material includes two-view and four-view experiments, with NVS performance tending to improve as the number of views increases.
+- NVS inference time is reported for three-view input, but not for four-view input.
+- Reporting inference time across different view counts would better justify the choice of three-view input.
+
+#### Missing Multi-View Image Restoration Results in Real-World Experiments
+- Multi-view image restoration performance is not reported in the real-world experiments.
+- The slide records a GPT-suggested explanation: quantitative input-view restoration evaluation requires clean ground truth that corresponds precisely to the degraded inputs, so ground-truth availability and alignment conditions may have affected the evaluation.`
+},
+  
+{
   id: "2026-10-08-NExT-GPT",
   number: "03", // 우리 스터디 회차 번호
   example: false, // 딱히 상관 없음
@@ -32,6 +96,30 @@ const posts = [
 3. **Retrieval-augmented generation:** Explore whether incorporating retrieval mechanisms improves factual accuracy and cross-modal consistency.
 4. **Generalization of MosIT:** Evaluate whether modality-switching instruction tuning generalizes to unseen modality transitions and input–output combinations.
 `
+},
+
+{
+  id: "2026-09-22-VGGT",
+  number: "02",
+  example: false,
+  topic: ["3D Reconstruction","Multi-view Geometry","Transformer"],
+  title: "VGGT",
+  subtitle: "Visual Geometry Grounded Transformer",
+  cover: "VGGT",
+  presenter: "정선영",
+  date: "2026-09-22",
+  paper: "https://arxiv.org/abs/2503.11651",
+  author: "Jianyuan Wang, Minghao Chen, Nikita Karaev, Andrea Vedaldi, Christian Rupprecht, David Novotny",
+  venue: "CVPR 2025 (Best Paper Award)",
+  code: "https://github.com/facebookresearch/vggt",
+  pdf: "slides/2026-09-22-VGGT.pdf",
+  summary: "VGGT introduces a feed-forward neural network that jointly predicts camera parameters, depth maps, point maps, and point tracks from one to hundreds of images, enabling fast and accurate 3D reconstruction while providing transferable features for downstream non-rigid tracking and novel-view synthesis.",
+  discussion: `### Idea & Discussion
+
+#### Reference View Selection
+- Both DUSt3R and VGGT use the first image's camera as the reference coordinate frame.
+- Could reconstruction performance improve if another view were selected as the reference?
+- Investigate this question empirically.`
 },
   
 {
@@ -65,6 +153,39 @@ const posts = [
 
 **Key Research Question:** Which asymmetries enable genuinely new solution paths rather than merely longer reformulations?
 `
+},
+  
+{
+  id: "2026-09-16-ASPIRE",
+  number: "01",
+  example: false,
+  topic: ["Robotics","Code-as-Policy","Continual Learning"],
+  title: "ASPIRE",
+  subtitle: "Agentic /Skills Discovery for Robotics",
+  cover: "ASPIRE",
+  presenter: "정선영",
+  date: "2026-09-16",
+  paper: "https://arxiv.org/abs/2607.00272",
+  author: "Runyu Lu, et al.",
+  venue: "arXiv 2026",
+  code: "https://github.com/NVlabs/ASPIRE",
+  pdf: "slides/2026-09-16-ASPIRE.pdf",
+  summary: "ASPIRE introduces a continual-learning robotic system that autonomously writes and refines code-as-policy control programs through trace-guided debugging and evolutionary search, accumulating validated repairs in a reusable skill library to improve task performance, enable zero-shot transfer to unseen long-horizon tasks, and reduce real-robot programming effort across embodiments.",
+  discussion: `### Idea & Discussion
+
+#### Which Approach Will Take the Lead?
+- VLAs trained on large-scale datasets or agent systems that accumulate experience during execution?
+- A hybrid approach could let a VLA generate basic actions while a higher-level agent analyzes failures and compensates for them.
+
+#### Extension Ideas
+1. Develop a skill-library review mechanism that removes duplicates and evaluates skills after application to support removal and other maintenance decisions.
+2. Explore a hybrid approach that fine-tunes a VLA using the skill library accumulated by an agent.
+3. Include skill efficiency in the selection score so that more efficient actions can be chosen when success rates are equal.
+
+#### Discussion: Skill Selection Criteria
+- The slide describes skill selection in terms of failure signals and choosing candidates with higher success rates during evolutionary search, but notes that a tie-breaking criterion is not defined.
+- Incorporating efficiency into the score could help select a more efficient skill.
+- Should efficiency matter only when success rates are tied? If success is already sufficiently high, should a marginal improvement justify selecting a less efficient skill?`
 },
   
 {
