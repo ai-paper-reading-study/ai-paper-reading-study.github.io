@@ -44,9 +44,50 @@ dialog.addEventListener('close',()=>document.body.style.overflow='');
 document.querySelector('#close').onclick=()=>dialog.close();
 dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();}});
 search.addEventListener('input',()=>{currentPage=1;render();});
-const topics=['전체',...new Set(posts.flatMap(getTopics))];
-document.querySelector('.filters').innerHTML=topics.map(t=>`<button data-filter="${escapeHTML(t)}" class="${t==='전체'?'active':''}" aria-pressed="${t==='전체'}">${escapeHTML(t)}</button>`).join('');
-document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{filter=b.dataset.filter;currentPage=1;document.querySelectorAll('[data-filter]').forEach(x=>{x.classList.toggle('active',x===b);x.setAttribute('aria-pressed',String(x===b));});render();});
+
+// Topic filters: primary topics first, then frequency, then alphabetical order.
+const FILTER_LIMIT=7; // Includes the always-visible '전체' filter.
+let filtersExpanded=false;
+const topicStats=new Map();
+posts.forEach(post=>{
+ const list=getTopics(post);
+ list.forEach((topic,index)=>{
+  if(!topicStats.has(topic))topicStats.set(topic,{primary:false,count:0});
+  const stats=topicStats.get(topic);
+  stats.count++;
+  if(index===0)stats.primary=true;
+ });
+});
+const sortedTopics=[...topicStats.keys()].filter(t=>t!=='전체').sort((a,b)=>{
+ const x=topicStats.get(a),y=topicStats.get(b);
+ return Number(y.primary)-Number(x.primary)||y.count-x.count||a.localeCompare(b,'en');
+});
+const filtersEl=document.querySelector('.filters');
+function renderFilters(){
+ const initial=sortedTopics.slice(0,FILTER_LIMIT-1);
+ const visible=filtersExpanded?sortedTopics:[...initial];
+ // Keep an active topic visible even when the list is collapsed.
+ if(!filtersExpanded&&filter!=='전체'&&!visible.includes(filter))visible.push(filter);
+ const filterButton=topic=>`<button type="button" data-filter="${escapeHTML(topic)}" class="${filter===topic?'active':''}" aria-pressed="${filter===topic}">${escapeHTML(topic)}</button>`;
+ const hiddenCount=sortedTopics.length-initial.length;
+ filtersEl.innerHTML=filterButton('전체')+visible.map(filterButton).join('')+
+  (hiddenCount>0?`<button type="button" data-toggle-topics aria-expanded="${filtersExpanded}" aria-label="${filtersExpanded?'키워드 목록 접기':`숨겨진 키워드 ${hiddenCount}개 모두 보기`}">${filtersExpanded?'− Less':`+ More (${hiddenCount})`}</button>`:'');
+}
+filtersEl.addEventListener('click',event=>{
+ const button=event.target.closest('button');
+ if(!button||!filtersEl.contains(button))return;
+ if(button.hasAttribute('data-toggle-topics')){
+  filtersExpanded=!filtersExpanded;
+  renderFilters();
+ }else if(button.hasAttribute('data-filter')){
+  filter=button.dataset.filter;
+  currentPage=1;
+  renderFilters();
+  render();
+ }
+});
+renderFilters();
+
 function renderMembers(){document.querySelector('#member-list').innerHTML=members.map((m,i)=>`<article class="member-card"><div class="member-top"><span>MEMBER ${String(i+1).padStart(2,'0')}</span><span class="member-icon" aria-hidden="true">${String(i+1).padStart(2,'0')}</span></div><h3>${escapeHTML(m.name||'이름 입력 예정')}</h3><dl><div><dt>학교</dt><dd>${escapeHTML(m.school||'입력 예정')}</dd></div><div><dt>학과</dt><dd>${escapeHTML(m.department||'입력 예정')}</dd></div><div><dt>GitHub</dt><dd>${m.github?link(m.github,m.github):'링크 입력 예정'}</dd></div><div><dt>Email</dt><dd>${m.email?`<a href="mailto:${escapeHTML(encodeURIComponent(m.email))}">${escapeHTML(m.email)}</a>`:'이메일 입력 예정'}</dd></div></dl></article>`).join('');}
 function showPage(){const page=location.hash==='#members'?'members':'archive';document.querySelector('#archive').hidden=page!=='archive';document.querySelector('#members').hidden=page!=='members';document.querySelectorAll('[data-page]').forEach(a=>{if(a.dataset.page===page)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});}
 window.addEventListener('hashchange',showPage);render();renderMembers();showPage();
