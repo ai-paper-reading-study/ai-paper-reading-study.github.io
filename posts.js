@@ -3,6 +3,72 @@
 // 새 게시물은 README.md의 양식을 복사해 추가하세요.
 const posts = [
 {
+  id: "2026-10-27-AnyGPT",
+  number: "04",
+  example: false,
+  topic: ["Multimodal", "LLM", "Any-to-Any Generation"],
+  title: "AnyGPT",
+  subtitle: "Unified Multimodal LLM with Discrete Sequence Modeling",
+  cover: "AnyGPT",
+  presenter: "이정연",
+  date: "2026-10-27",
+  paper: "https://arxiv.org/abs/2402.12226",
+  author: "Jun Zhan, et al.",
+  venue: "ACL 2024",
+  code: "https://junzhan2000.github.io/AnyGPT.github.io/",
+  pdf: "slides/2026-10-27-AnyGPT.pdf",
+  summary: "AnyGPT enables any-to-any understanding and generation across text, speech, images, and music by representing all modalities as discrete token sequences, training a unified autoregressive LLM via next-token prediction with text-centric multimodal alignment and synthetic interleaved instruction data, and decoding generated tokens back into their original modalities.",
+  discussion: `#### Research Idea - Unified Multi-Turn Any-to-Any Benchmark
+  
+**Related Work**
+
+- UniM (2026): Any-to-any interleaved evaluation across 7 modalities, without explicit multi-turn dialogue evaluation.
+- MME-Unify (2026): Unified evaluation of multimodal understanding and generation, without sustained multi-turn interaction.
+- IMUG-Bench (2026): Joint understanding and generation in multi-turn dialogues, limited to image–text interactions.
+- OmniDialog (2024): Multi-turn generalization across text, image, and audio inputs, primarily focusing on understanding.
+- Modality Maturity Index (2026): Evaluates input/output modality combinations and appropriate output modality selection, primarily through single-turn prompts.
+
+**Research Gap**
+
+Existing benchmarks do not comprehensively evaluate **any-to-any multimodal understanding and generation together with context retention and appropriate response modality selection across multiple dialogue turns.**
+
+**Proposed Direction**
+
+Develop a **unified multi-turn any-to-any multimodal benchmark** evaluating:
+
+1. Understanding & Generation: Accuracy and quality across diverse input/output modality combinations.
+2. Context Consistency: Ability to maintain context across multiple turns and modality switches.
+3. Modality Selection: Ability to select and generate appropriate output modalities based on conversational context.
+
+#### Q&A
+
+Q1. NExT-GPT도 projection으로 모달리티를 정렬하는데, discrete token으로 통일하는 것과 큰 차이가 있는가?
+
+- NExT-GPT: Projection으로 표현 공간을 정렬하지만, 입력과 출력의 표현 방식이 달라 별도의 정렬 과정이 필요하다.
+
+- AnyGPT: 모든 모달리티를 discrete token으로 표현하여 동일한 autoregressive framework에서 모델링한다.
+
+⇒ 핵심 장점은 LLM의 기존 아키텍처와 next-token prediction objective를 그대로 활용해 통합 학습할 수 있다는 점이다. (△ quantization으로 인한 정보 손실이 발생할 수 있어 discrete token이 항상 우수한 것은 아닐 수 있다.)
+
+NExT-GPT도 projection으로 모달리티를 정렬하는데, discrete token으로 통일하는 것과 큰 차이가 있는가?
+
+NExT-GPT: Projection으로 표현 공간을 정렬하지만, 입력과 출력의 표현 방식이 달라 별도의 정렬 과정이 필요하다.
+
+AnyGPT: 모든 모달리티를 discrete token으로 표현하여 동일한 autoregressive framework에서 모델링한다.
+
+⇒ 핵심 장점은 LLM의 기존 아키텍처와 next-token prediction objective를 그대로 활용해 통합 학습할 수 있다는 점이다. 단, 양자화로 인한 정보 손실이 발생할 수 있어 discrete token이 항상 우수한 것은 아니다.
+
+Q2. AnyGPT는 모달리티별 복원 방식이 diffusion/decoding으로 다른데, 오히려 모든 모달리티의 생성에 diffusion을 사용하는 NExT-GPT가 더 통일된 방식 아닌가?
+
+- NExT-GPT: Diffusion 기반 생성 모델을 활용하지만, 모달리티마다 서로 다른 모델과 출력 projection을 사용한다.
+
+- AnyGPT: LLM이 모든 모달리티의 discrete token을 직접 예측하고, 최종 콘텐츠는 모달리티별 decoder로 복원한다.
+
+⇒ AnyGPT의 통일성은 복원 방식이 아니라 LLM 내부의 unified sequence modeling에 있다.
+`
+},
+  
+{
   id: "2026-10-27-TUD",
   number: "04",
   example: false,
