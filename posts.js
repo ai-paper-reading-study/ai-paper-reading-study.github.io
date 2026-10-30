@@ -3,6 +3,34 @@
 // 새 게시물은 README.md의 양식을 복사해 추가하세요.
 const posts = [
 {
+  id: "2026-10-08-ReSplat",
+  number: "03",
+  example: false,
+  topic: ["3D Gaussian Splatting","Novel View Synthesis","Image Restoration"],
+  title: "ReSplat",
+  subtitle: "Degradation-agnostic Feed-forward Gaussian Splatting via Self-guided Residual Diffusion",
+  cover: "ReSplat",
+  presenter: "정선영",
+  date: "2026-10-08",
+  paper: "https://openreview.net/forum?id=461VpgnLsi",
+  author: "Youngho Yoon, Kuk-Jin Yoon",
+  venue: "ICLR 2026 (Poster)",
+  code: "https://github.com/yh-yoon/ReSplat",
+  pdf: "slides/2026-10-08-ReSplat.pdf",
+  summary: "ReSplat introduces a degradation-agnostic novel-view synthesis framework that jointly restores multi-view images and predicts a Gaussian scene representation, using 3D Gaussians generated during diffusion sampling as self-guidance to improve cross-view consistency and rendering quality under blur, low light, haze, rain, and snow.",
+  discussion: `### Idea & Discussion
+
+#### Insufficient Justification for Three-View Input
+- The supplementary material includes two-view and four-view experiments, with NVS performance tending to improve as the number of views increases.
+- NVS inference time is reported for three-view input, but not for four-view input.
+- Reporting inference time across different view counts would better justify the choice of three-view input.
+
+#### Missing Multi-View Image Restoration Results in Real-World Experiments
+- Multi-view image restoration performance is not reported in the real-world experiments.
+- The slide records a GPT-suggested explanation: quantitative input-view restoration evaluation requires clean ground truth that corresponds precisely to the degraded inputs, so ground-truth availability and alignment conditions may have affected the evaluation.`
+},
+  
+{
   id: "2026-10-08-NExT-GPT",
   number: "03", // 우리 스터디 회차 번호
   example: false, // 딱히 상관 없음
