@@ -1,6 +1,6 @@
 
 const cards=document.querySelector('#cards'), search=document.querySelector('#search'), dialog=document.querySelector('#detail');
-let filter='전체', presenterFilter='', viewMode='sessions', currentPage=1;
+let filter='전체', presenterFilter='', viewMode='list', currentPage=1;
 const PAGE_SIZE=10;
 const pagination=document.createElement('nav');
 pagination.className='pagination';
@@ -76,7 +76,7 @@ function openPost(id){
 function openSession(key){
  const group=groupPosts(posts,sessionKey).find(g=>g.key===key);
  if(!group){displayDetail('<h2 id="detail-title" tabindex="-1">회차를 찾을 수 없습니다</h2><a class="resource-link" href="#archive">아카이브로 돌아가기</a>');return;}
- displayDetail(`<p class="eyebrow">STUDY SESSION</p><h2 id="detail-title" tabindex="-1">${escapeHTML(sessionLabel(group))} 스터디</h2><div class="article-meta">${escapeHTML(dateLabel(group.date))} · ${group.posts.length}개 발표</div><div class="session-links">${group.posts.map(p=>`<a class="session-paper-link" href="${paperURL(p.id)}"><span class="session-link-presenter">${escapeHTML(p.presenter||'발표자 미정')}</span><span><strong>${escapeHTML(p.title)}</strong><span class="post-summary">${escapeHTML(p.subtitle||'')}</span></span><span aria-hidden="true">↗</span></a>`).join('')}</div>`);
+ displayDetail(`<p class="eyebrow">STUDY SESSION</p><h2 id="detail-title" tabindex="-1">${escapeHTML(sessionLabel(group))}</h2><div class="article-meta">${escapeHTML(dateLabel(group.date))} · ${group.posts.length}개 발표</div><div class="session-links">${group.posts.map(p=>`<a class="session-paper-link" href="${paperURL(p.id)}"><span class="session-link-presenter">${escapeHTML(p.presenter||'발표자 미정')}</span><span><strong>${escapeHTML(p.title)}</strong><span class="post-summary">${escapeHTML(p.subtitle||'')}</span></span><span aria-hidden="true">↗</span></a>`).join('')}</div>`);
 }
 dialog.addEventListener('close',()=>{document.body.style.overflow='';if(/^#(?:paper|session)=/.test(location.hash))location.hash='archive';});
 document.querySelector('#close').onclick=()=>dialog.close();
