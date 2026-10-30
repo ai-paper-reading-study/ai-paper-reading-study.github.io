@@ -33,6 +33,30 @@ const posts = [
 4. **Generalization of MosIT:** Evaluate whether modality-switching instruction tuning generalizes to unseen modality transitions and input–output combinations.
 `
 },
+
+{
+  id: "2026-09-22-VGGT",
+  number: "02",
+  example: false,
+  topic: ["3D Reconstruction","Multi-view Geometry","Transformer"],
+  title: "VGGT",
+  subtitle: "Visual Geometry Grounded Transformer",
+  cover: "VGGT",
+  presenter: "정선영",
+  date: "2026-09-22",
+  paper: "https://arxiv.org/abs/2503.11651",
+  author: "Jianyuan Wang, Minghao Chen, Nikita Karaev, Andrea Vedaldi, Christian Rupprecht, David Novotny",
+  venue: "CVPR 2025 (Best Paper Award)",
+  code: "https://github.com/facebookresearch/vggt",
+  pdf: "slides/2026-09-22-VGGT.pdf",
+  summary: "VGGT introduces a feed-forward neural network that jointly predicts camera parameters, depth maps, point maps, and point tracks from one to hundreds of images, enabling fast and accurate 3D reconstruction while providing transferable features for downstream non-rigid tracking and novel-view synthesis.",
+  discussion: `### Idea & Discussion
+
+#### Reference View Selection
+- Both DUSt3R and VGGT use the first image's camera as the reference coordinate frame.
+- Could reconstruction performance improve if another view were selected as the reference?
+- Investigate this question empirically.`
+},
   
 {
   id: "2026-09-22-e3",
