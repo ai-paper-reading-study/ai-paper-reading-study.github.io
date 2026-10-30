@@ -44,14 +44,14 @@
 .toolbar{align-items:flex-start;gap:24px;margin-bottom:30px}
 .filters{flex:1}.filters button{background:#fff;min-height:36px}
 .search{margin-top:3px;flex:0 0 235px}.search input{font-size:12px;min-height:28px}
-.session-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
-.session-card{display:flex;flex-direction:column;min-height:230px;gap:32px;padding:28px 30px 20px;background:#fff;border:1px solid #d6dacb;border-radius:20px;color:#18211b;transition:background .18s,border-color .18s,box-shadow .18s}
+.session-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.session-card{display:flex;flex-direction:column;min-height:190px;gap:20px;padding:20px 18px 16px;background:#fff;border:1px solid #d6dacb;border-radius:16px;color:#18211b;transition:background .18s,border-color .18s,box-shadow .18s}
 .session-card:hover{background:#f1f4ec;border-color:#aab89e;box-shadow:0 6px 22px #00462a08}
 .session-top{display:flex;align-items:center;justify-content:space-between;gap:18px}
-.session-number{font-size:31px;font-weight:800;letter-spacing:-1.2px;color:#00462a}
-.session-date{font-size:12px;color:#71786f;font-variant-numeric:tabular-nums}
-.session-papers{display:flex;flex-direction:column;gap:12px;margin-top:auto}
-.session-paper{display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:10px;align-items:baseline;font-size:14px;line-height:1.75;overflow-wrap:anywhere}
+.session-number{font-size:26px;font-weight:800;letter-spacing:-1.2px;color:#00462a}
+.session-date{font-size:11px;color:#71786f;font-variant-numeric:tabular-nums}
+.session-papers{display:flex;flex-direction:column;gap:9px;margin-top:auto}
+.session-paper{display:grid;grid-template-columns:auto auto minmax(0,1fr);gap:8px;align-items:baseline;font-size:13px;line-height:1.75;overflow-wrap:anywhere}
 .session-paper strong{font-weight:700;white-space:nowrap}.paper-divider{color:#b7beb2}
 .session-bottom{display:flex;align-items:center;justify-content:space-between;font-size:10px;color:var(--muted);padding-top:14px;border-top:1px solid #e9ece5}
 .session-bottom>span:last-child{font-size:18px;color:var(--green)}
@@ -69,13 +69,13 @@
 .session-paper-link strong{font-size:17px;overflow-wrap:anywhere}
 .detail-back{display:inline-block;margin-bottom:26px;font-size:12px;text-decoration:underline;text-underline-offset:4px}
 dialog{border-color:var(--line);border-radius:18px}
-@media(max-width:800px){.toolbar{flex-direction:column;align-items:stretch}.search{flex:auto;max-width:none}.session-card{padding:24px 22px 18px}.session-paper{font-size:13px;gap:8px}}
+@media(max-width:800px){.toolbar{flex-direction:column;align-items:stretch}.search{flex:auto;max-width:none}.session-card{padding:20px 18px 16px}.session-paper{font-size:13px;gap:8px}}
 @media(max-width:650px){
 .archive-controls{align-items:stretch;flex-direction:column;margin-top:24px;gap:14px}
 .view-switch{align-self:flex-start}.presenter-control{justify-content:space-between}
 .presenter-control select{max-width:none;min-width:150px}
-.session-grid{grid-template-columns:1fr;gap:16px}.session-card{min-height:215px;border-radius:16px}
-.session-number{font-size:28px}.session-date{font-size:11px}
+.session-grid{grid-template-columns:1fr;gap:16px}.session-card{min-height:185px;border-radius:16px}
+.session-number{font-size:26px}.session-date{font-size:11px}
 .date-group{grid-template-columns:1fr}.date-cell{padding:18px 4px 10px;font-weight:600;color:var(--green)}
 .date-papers{border-left:0}.date-papers .post-row{grid-template-columns:minmax(0,1fr) 22px;padding:18px 4px;gap:8px 14px}
 .date-papers .post-main{grid-column:1;grid-row:2}.date-papers .post-presenter{grid-column:1;grid-row:1;text-align:left}
@@ -84,3 +84,7 @@ dialog{border-color:var(--line);border-radius:18px}
 .session-link-presenter{grid-column:1/-1}.session-paper-link strong{font-size:16px}
 }
 
+
+/* Compact session cards: four on wide screens, three on laptops. */
+@media(min-width:901px) and (max-width:1199px){.session-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:651px) and (max-width:900px){.session-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
