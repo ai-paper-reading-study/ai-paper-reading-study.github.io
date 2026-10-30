@@ -3,6 +3,42 @@
 // 새 게시물은 README.md의 양식을 복사해 추가하세요.
 const posts = [
 {
+  id: "2026-10-27-TUD",
+  number: "04",
+  example: false,
+  topic: ["Robotics","VLA","Adaptive Inference"],
+  title: "TUD",
+  subtitle: "Triggering Generalist Reasoning via Predictive Uncertainty for Dual-System VLA",
+  cover: "TUD",
+  presenter: "정선영",
+  date: "2026-10-27",
+  paper: "https://arxiv.org/abs/2610.05025",
+  author: "Hyemin Yang, Wooseong Jeong, Giwon Lee, Kuk-Jin Yoon",
+  venue: "NeurIPS 2026",
+  code: "",
+  pdf: "slides/2026-10-27-TUD.pdf",
+  summary: "TUD enables adaptive generalist invocation in dual-system VLA models by measuring the cross-step dispersion of action re-predictions under cached context, reusing existing model forwards without phase annotations or an auxiliary uncertainty model to improve the success–computation trade-off and reduce generalist calls by 75% in real-robot experiments relative to the strongest fixed-interval baseline while increasing success.",
+  discussion: `### Idea & Discussion
+
+#### Learnable Maximum Invocation Interval
+- **Limitation:** A fixed maximum invocation interval limits the ability to account for situation-dependent rates of change when handling drift.
+- **Motivation:** If predictions change gradually, could their deviation from the initial plan accumulate even when dispersion remains low?
+- **Idea:** Learn a policy that adjusts the maximum invocation interval according to observation changes and prediction trends, shortening it when changes accumulate and extending it during stable periods.
+
+#### Fixed Buffer Size and Re-Prediction Interval
+- **Motivation:** Could fixing the buffer size at five and the re-prediction interval at two steps be as rigid as invoking the generalist at a static frequency?
+- **Validation in Appendix C:** The slide presents an ablation table comparing success rates and call counts across buffer sizes, measurement intervals, decision intervals, and maximum invocation intervals.
+
+### QA 🙋
+
+- 고정된 호출 간격 대신 Generalist를 적응적·유연하게 호출하는 기존 연구도 있지 않은가?  
+  ➡️ 관련 연구로 OneTwoVLA가 있었지만, action phase boundary를 annotation한 뒤 활용하는 방식이었다. 이외에 직접 비교할 만한 관련 연구는 없었던 것 같다.
+
+- Baseline은 어떤 기준으로 선정했는가? Generalist를 고정 주기로 호출하는 모델만 포함했는지, dual-system VLA가 아닌 방법도 포함했는지 궁금하다.  
+  ➡️ 실험 분석은 제안 모델 구조를 평가하는 ablation에 중점을 두었으며, baseline은 성능이 좋은 VLA들을 중심으로 선정했다.`
+},
+  
+{
   id: "2026-10-08-ReSplat",
   number: "03",
   example: false,
