@@ -68,6 +68,39 @@ const posts = [
 },
   
 {
+  id: "2026-09-16-ASPIRE",
+  number: "01",
+  example: false,
+  topic: ["Robotics","Code-as-Policy","Continual Learning"],
+  title: "ASPIRE",
+  subtitle: "Agentic /Skills Discovery for Robotics",
+  cover: "ASPIRE",
+  presenter: "정선영",
+  date: "2026-09-16",
+  paper: "https://arxiv.org/abs/2607.00272",
+  author: "Runyu Lu, et al.",
+  venue: "arXiv 2026",
+  code: "https://github.com/NVlabs/ASPIRE",
+  pdf: "slides/2026-09-16-ASPIRE.pdf",
+  summary: "ASPIRE introduces a continual-learning robotic system that autonomously writes and refines code-as-policy control programs through trace-guided debugging and evolutionary search, accumulating validated repairs in a reusable skill library to improve task performance, enable zero-shot transfer to unseen long-horizon tasks, and reduce real-robot programming effort across embodiments.",
+  discussion: `### Idea & Discussion
+
+#### Which Approach Will Take the Lead?
+- VLAs trained on large-scale datasets or agent systems that accumulate experience during execution?
+- A hybrid approach could let a VLA generate basic actions while a higher-level agent analyzes failures and compensates for them.
+
+#### Extension Ideas
+1. Develop a skill-library review mechanism that removes duplicates and evaluates skills after application to support removal and other maintenance decisions.
+2. Explore a hybrid approach that fine-tunes a VLA using the skill library accumulated by an agent.
+3. Include skill efficiency in the selection score so that more efficient actions can be chosen when success rates are equal.
+
+#### Discussion: Skill Selection Criteria
+- The slide describes skill selection in terms of failure signals and choosing candidates with higher success rates during evolutionary search, but notes that a tie-breaking criterion is not defined.
+- Incorporating efficiency into the score could help select a more efficient skill.
+- Should efficiency matter only when success rates are tied? If success is already sufficiently high, should a marginal improvement justify selecting a less efficient skill?`
+},
+  
+{
   id: "2026-09-16-CLEAR",
   number: "01",
   example: false,
