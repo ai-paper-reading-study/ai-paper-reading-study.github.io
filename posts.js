@@ -22,6 +22,7 @@ const posts = [
   
 **Related Work**
 
+- OmniBench (2025): Evaluates cross-modal understanding and reasoning across text, image, and audio inputs, without multimodal generation or multi-turn dialogue evaluation.
 - UniM (2026): Any-to-any interleaved evaluation across 7 modalities, without explicit multi-turn dialogue evaluation.
 - MME-Unify (2026): Unified evaluation of multimodal understanding and generation, without sustained multi-turn interaction.
 - IMUG-Bench (2026): Joint understanding and generation in multi-turn dialogues, limited to image–text interactions.
