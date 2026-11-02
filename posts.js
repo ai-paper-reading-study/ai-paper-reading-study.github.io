@@ -45,26 +45,16 @@ Develop a **unified multi-turn any-to-any multimodal benchmark** evaluating:
 
 Q1. NExT-GPT도 projection으로 모달리티를 정렬하는데, discrete token으로 통일하는 것과 큰 차이가 있는가?
 
+A1.
 - NExT-GPT: Projection으로 표현 공간을 정렬하지만, 입력과 출력의 표현 방식이 달라 별도의 정렬 과정이 필요하다.
-
 - AnyGPT: 모든 모달리티를 discrete token으로 표현하여 동일한 autoregressive framework에서 모델링한다.
-
 ⇒ 핵심 장점은 LLM의 기존 아키텍처와 next-token prediction objective를 그대로 활용해 통합 학습할 수 있다는 점이다. (△ quantization으로 인한 정보 손실이 발생할 수 있어 discrete token이 항상 우수한 것은 아닐 수 있다.)
-
-NExT-GPT도 projection으로 모달리티를 정렬하는데, discrete token으로 통일하는 것과 큰 차이가 있는가?
-
-NExT-GPT: Projection으로 표현 공간을 정렬하지만, 입력과 출력의 표현 방식이 달라 별도의 정렬 과정이 필요하다.
-
-AnyGPT: 모든 모달리티를 discrete token으로 표현하여 동일한 autoregressive framework에서 모델링한다.
-
-⇒ 핵심 장점은 LLM의 기존 아키텍처와 next-token prediction objective를 그대로 활용해 통합 학습할 수 있다는 점이다. 단, 양자화로 인한 정보 손실이 발생할 수 있어 discrete token이 항상 우수한 것은 아니다.
 
 Q2. AnyGPT는 모달리티별 복원 방식이 diffusion/decoding으로 다른데, 오히려 모든 모달리티의 생성에 diffusion을 사용하는 NExT-GPT가 더 통일된 방식 아닌가?
 
+A2.
 - NExT-GPT: Diffusion 기반 생성 모델을 활용하지만, 모달리티마다 서로 다른 모델과 출력 projection을 사용한다.
-
 - AnyGPT: LLM이 모든 모달리티의 discrete token을 직접 예측하고, 최종 콘텐츠는 모달리티별 decoder로 복원한다.
-
 ⇒ AnyGPT의 통일성은 복원 방식이 아니라 LLM 내부의 unified sequence modeling에 있다.
 `
 },
