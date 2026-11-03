@@ -3,6 +3,40 @@
 // 새 게시물은 README.md의 양식을 복사해 추가하세요.
 const posts = [
 {
+  id: "2026-11-03-Reuse-Before-You-Retrieve",
+  number: "05",
+  example: false,
+  topic: ["Robotics", "VLA", "Test-Time Augmentation"],
+  title: "Reuse Before You Retrieve",
+  subtitle: "Diagnosing Headroom and Complementarity for Test-Time Augmentation of Embodied Multimodal Policies",
+  cover: "Reuse Before You Retrieve",
+  presenter: "정선영",
+  date: "2026-11-03",
+  paper: "https://arxiv.org/abs/2608.17484",
+  author: "Yuhwan Jeong, Kuk-Jin Yoon",
+  venue: "ECCV Workshop 2026",
+  code: "",
+  pdf: "slides/2026-11-03-Reuse-Before-You-Retrieve.pdf",
+  summary: "Reuse Before You Retrieve uses recoverable headroom and retrieval complementarity to distinguish when frozen VLA policies benefit from selecting existing stochastic behaviors or introducing external demonstration priors, showing that episode-level selection under retryable or parallel execution improves LIBERO success rates by up to 21 percentage points while retrieval benefits the policy with the largest measured action-prior gap and can provide further gains when combined with selection.",
+  discussion: `##### Performance Degradation after Retrieval
+- **Question:** Why does combining retrieval with selection perform worse than selection alone on the Goal suite?
+- **Observation:** Success decreases from 97.6% with selection alone to 96.8% with retrieval and selection, a drop of 0.8 percentage points.
+- **Discussion:** A high success rate limits the potential for further improvement but does not explain why performance decreases after combining the two interventions.
+- **Analysis:** Compare cases where adding retrieval turns failure into success with cases where it turns success into failure under the same initial states.
+- **Validation:** Repeat the evaluation across multiple seeds to determine whether the 0.8-percentage-point decrease is consistent.
+
+##### From Retryable Execution to a Single Irreversible Attempt
+- **Stated Limitation:** The method selects among N complete rollouts after executing them from the same initial state, requiring resets or parallel execution.
+- **Question:** How can candidates be compared and selected when only one real execution attempt is available?
+- **Discussion:** The current score relies on observation sequences collected during execution and therefore cannot be computed before execution.
+- **Possible Direction:** Predict and evaluate candidate rollouts using a world model or simulator, then execute the selected actions in the real environment.
+
+#### QA 🙋
+
+- **의견 — Conditions for Test-Time Scaling:** Candidate set 안에 더 나은 outcome이 존재해야 하고, selection signal이 이를 식별할 수 있어야 한다는 조건은 치명적인 단점인 것 같다는 의견이 있었다. 이와 관련해 발표자료에서는 headroom과 oracle–selector gap을 분리하여 평가할 필요가 있다고 정리했다.`
+},
+  
+{
   id: "2026-10-27-AnyGPT",
   number: "04",
   example: false,
