@@ -18,13 +18,13 @@ const posts = [
   code: "https://github.com/QwenLM/Qwen2.5-Omni", // 논문이 공개한 깃허브 등 코드 있다면 링크 첨부 가능
   pdf: "slides/2026-11-03-Qwen2.5-Omni.pdf",
   summary: "Qwen2.5-Omni integrates text, image, audio, and video understanding with concurrent streaming text and speech generation through a Thinker–Talker architecture, using TMRoPE to temporally align audio–video inputs and a dual-track autoregressive Talker conditioned on Thinker representations and text tokens to generate speech.",
-  discussion: `####Limitations and Future Directions
+  discussion: `#### Limitations and Future Directions
 
 - **Limitation:** Output modalities are limited to text and speech.
 - **Authors’ Future Work:** Extend generation to images, videos, and music.
 - **Additional Idea:** Explore 3D generation and structured outputs, such as executable code, tables, and rendered charts.
 
-####Research Ideas
+#### Research Ideas
 
 **1. Context-Aware Speech Generation**
 
@@ -42,7 +42,7 @@ const posts = [
 - **Evaluation:** Accuracy by condition, performance changes after modality removal, and robustness across noise levels.
 - **Expected Insight:** Identify modality biases and sensitivity to input reliability.
 
-####Discussion and Q&A
+#### Discussion and Q&A
 
 **1. Why does an omni-modal model generate only text and speech?**
 
