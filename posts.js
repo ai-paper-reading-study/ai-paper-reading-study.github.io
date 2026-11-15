@@ -3,6 +3,59 @@
 // 새 게시물은 README.md의 양식을 복사해 추가하세요.
 const posts = [
 {
+  id: "2026-11-14-OmniVinci",
+  number: "06", // 우리 스터디 회차 번호
+  example: false, // 딱히 상관 없음
+  topic: ["Omnimodal", "LLM"],
+  title: "OmniVinci",
+  subtitle: "Enhancing Architecture and Data for Omni-Modal Understanding LLM",
+  cover: "OmniVinci", // 갤러리형일때만 표시됨. 지금은 리스트형이라서 화면에 표시 X
+  presenter: "이정연",
+  date: "2026-11-14", // 발표 날짜
+  paper: "https://arxiv.org/pdf/2510.15870v2",
+  author: "Hanrong Ye, et al. (NVIDIA)",
+  venue: "ICLR 2026",
+  code: "https://github.com/NVlabs/OmniVinci", // 논문이 공개한 깃허브 등 코드 있다면 링크 첨부 가능
+  pdf: "slides/2026-11-14-OmniVinci.pdf",
+  summary: "OmniVinci improves omni-modal understanding through contrastive vision–audio alignment with OmniAlignNet, temporal synchronization via Temporal Embedding Grouping and Constrained Rotary Time Embedding, and joint training on 24 million curated and synthesized conversations.",
+  discussion: `#### Limitations
+
+1. **Understanding-Centric Architecture**
+   - Native output is text; speech relies on external TTS backends, without end-to-end any-to-any generation.
+
+2. **Coarse-Grained Cross-Modal Alignment**
+   - Clip-level alignment does not explicitly enforce object–sound or event-level correspondence.
+   - TEG and CRTE encode temporal relationships, but fine-grained synchronization remains insufficiently validated.
+
+3. **Uneven Performance and Limited Controlled Comparisons**
+   - OmniVinci trails Qwen2.5-Omni on OmniBench (46.47 vs. 56.13), indicating room for improvement in image–audio understanding.
+   - CRTE’s advantage over TMRoPE remains unestablished without a controlled comparison.
+
+#### Research Ideas
+
+1. **Fine-Grained Cross-Modal Alignment**
+   - **RQ:** Is clip-level contrastive learning sufficient for fine-grained audiovisual correspondence?
+   - Introduce segment/event-level contrastive objectives and object–sound grounding; evaluate audiovisual event localization and temporal grounding.
+
+2. **Cross-Modal Interaction vs. Modality Bias**
+   - **RQ:** Do performance gains reflect cross-modal interaction or reliance on a dominant modality?
+   - Compare aligned inputs with single-modality inputs, mismatched audio–video pairs, and temporally shifted pairs; analyze accuracy changes and error patterns on tasks requiring both modalities.
+
+3. **Generalization of Alignment Methods**
+   - **RQ:** Do OmniVinci’s alignment methods generalize across architectures and tasks?
+   - Compare CRTE and TMRoPE-based alternatives under matched training conditions; extend the existing incremental ablations with factorial tests of OmniAlignNet, TEG, and CRTE, alongside task-level OmniBench analysis.
+
+#### Q&A
+
+1. **Did vision degradation motivate omni-modal joint training?**
+   - Yes. Appendix C.2.2 explicitly reports weaker visual understanding after audio training and identifies this as a motivation for subsequent joint training.
+
+2. **Does the paper evaluate individual modality capabilities?**
+   - Yes. Sections 4.2.2–4.2.4 report audio, video, and image evaluations. However, final-model benchmark results do not substitute for systematic checkpoint-by-checkpoint evaluation of forgetting and recovery.
+`
+},
+  
+{
   id: "2026-11-03-Qwen2.5-Omni",
   number: "05", // 우리 스터디 회차 번호
   example: false, // 딱히 상관 없음
