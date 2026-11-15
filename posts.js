@@ -3,6 +3,66 @@
 // 새 게시물은 README.md의 양식을 복사해 추가하세요.
 const posts = [
 {
+  id: "2026-11-03-Qwen2.5-Omni",
+  number: "05", // 우리 스터디 회차 번호
+  example: false, // 딱히 상관 없음
+  topic: ["Omnimodal", "LLM"],
+  title: "Qwen2.5-Omni",
+  subtitle: "Technical Report",
+  cover: "Qwen2.5-Omni", // 갤러리형일때만 표시됨. 지금은 리스트형이라서 화면에 표시 X
+  presenter: "이정연",
+  date: "2026-11-03", // 발표 날짜
+  paper: "https://arxiv.org/pdf/2503.20215",
+  author: "Qwen Team",
+  venue: "arXiv Preprint",
+  code: "https://github.com/QwenLM/Qwen2.5-Omni", // 논문이 공개한 깃허브 등 코드 있다면 링크 첨부 가능
+  pdf: "slides/2026-11-03-Qwen2.5-Omni.pdf",
+  summary: "Qwen2.5-Omni integrates text, image, audio, and video understanding with concurrent streaming text and speech generation through a Thinker–Talker architecture, using TMRoPE to temporally align audio–video inputs and a dual-track autoregressive Talker conditioned on Thinker representations and text tokens to generate speech.",
+  discussion: `####Limitations and Future Directions
+
+- **Limitation:** Output modalities are limited to text and speech.
+- **Authors’ Future Work:** Extend generation to images, videos, and music.
+- **Additional Idea:** Explore 3D generation and structured outputs, such as executable code, tables, and rendered charts.
+
+####Research Ideas
+
+**1. Context-Aware Speech Generation**
+
+- **RQ:** Do Thinker’s hidden representations help Talker produce contextually appropriate prosody and emotion?
+- **Experiment:** Fix the response text while varying the audiovisual context, comparing Thinker–Talker with text-only TTS and a context-ablated variant.
+- **Example:** “It’s okay” when comforting someone versus accepting a request.
+- **Evaluation:** Human ratings of contextual appropriateness, emotion, and prosody, alongside speaking-rate analysis and word error rate.
+- **Expected Insight:** Determine whether speech generation uses contextual information beyond the response text.
+
+**2. Modality Selection under Conflicting or Degraded Inputs**
+
+- **RQ:** Can the model prioritize task-relevant information when visual and auditory cues conflict or become unreliable?
+- **Experiment:** Compare matched, conflicting, modality-ablated, and noise-corrupted inputs using paired questions.
+- **Example:** A dog image with a cat’s meow: “Which animal is visible?” versus “Which animal is audible?”
+- **Evaluation:** Accuracy by condition, performance changes after modality removal, and robustness across noise levels.
+- **Expected Insight:** Identify modality biases and sensitivity to input reliability.
+
+####Discussion and Q&A
+
+**1. Why does an omni-modal model generate only text and speech?**
+
+Multimodal understanding does not automatically enable generation in every input modality. Qwen2.5-Omni focuses on multimodal understanding and simultaneous streaming text–speech responses; image, video, and music generation remain future directions. Comparisons with GPT models should specify the model version and distinguish native capabilities from external tools.
+
+**2. Must all modalities use three-dimensional representations?**
+
+No. TMRoPE uses three positional components—temporal, height, and width—not three-dimensional input embeddings. Text uses identical position IDs across these components, making its positional encoding equivalent to standard 1D RoPE. This is a design choice for representing spatial structure and audiovisual timing, rather than a universal requirement.
+
+**3. How does this compare with AnyGPT and NExT-GPT?**
+
+AnyGPT converts modalities into discrete tokens embedded in the LLM’s shared hidden space. NExT-GPT projects encoder features into LLM-compatible representations. These mechanisms differ from TMRoPE: embedding compatibility and positional encoding address separate problems.
+
+**4. What are the key contributions and empirical results?**
+
+Key contributions include Thinker–Talker, TMRoPE, and streaming input/output processing. In the reported OmniBench evaluation, Qwen2.5-Omni-7B achieved 56.13% average accuracy versus AnyGPT-7B’s 18.04%; this comparison concerns multimodal understanding.
+`
+},
+  
+{
   id: "2026-11-03-Reuse-Before-You-Retrieve",
   number: "05",
   example: false,
