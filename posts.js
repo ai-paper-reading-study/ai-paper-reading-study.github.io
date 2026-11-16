@@ -2,6 +2,35 @@
 // author: 논문 저자 이름, venue: 학회 / 저널명 (필요하면 연도 포함)
 // 새 게시물은 README.md의 양식을 복사해 추가하세요.
 const posts = [
+  {
+  id: "2026-11-14-Geometric-Distillation",
+  number: "06",
+  example: false,
+  topic: ["VLM", "3D Vision", "Knowledge Distillation"],
+  title: "Geometric Distillation",
+  subtitle: "3D-Aware Vision-Language Models Fine-Tuning with Geometric Distillation",
+  cover: "Geometric Distillation",
+  presenter: "정선영",
+  date: "2026-11-14",
+  paper: "https://arxiv.org/abs/2506.09883",
+  author: "Seonho Lee, Jiho Choi, Inha Kang, Jiwook Kim, Junsung Park, Hyunjung Shim",
+  venue: "EMNLP 2025 (Findings)",
+  code: "https://github.com/kaist-cvml/geometric-distillation",
+  pdf: "slides/2026-11-14-Geometric-Distillation.pdf",
+  summary: "Geometric Distillation enhances pretrained VLMs' 3D spatial understanding through lightweight, annotation-free fine-tuning that transfers sparse correspondences, relative depth relations, and dense cost volumes from 3D foundation models, improving 3D perception and vision-language reasoning at lower computational cost than prior approaches while preserving the original architecture and compatibility with image-text inputs.",
+  discussion: `##### Geometric Supervision from Feature Matching
+- **Question:** Could a low-cost feature matcher provide geometric supervision in place of a 3D foundation model?
+- **Idea:** Replace MASt3R or VGGT with a feature matcher as the source of sparse correspondences.
+- **Validation:** Keep other training conditions fixed and compare supervision generation costs and downstream performance.
+- **Challenge:** Since matching alone does not directly provide depth or metric scale, restrict this replacement to the sparse matching loss.
+
+##### From Geometric Understanding to Action
+- **Question:** Could geometric distillation also benefit spatially demanding manipulation tasks in VLAs?
+- **Motivation:** This paper evaluates perception and visual question answering, but its effect on action execution remains untested.
+- **Related Work — GLaD:** [GLaD](https://arxiv.org/abs/2512.09619) distills VGGT's geometric features into the LLM hidden states corresponding to visual tokens in a VLA.
+- **Discussion:** GLaD cites this paper in its related work, but the distillation targets and loss designs differ, and no direct experimental comparison between the two approaches is provided.`
+},
+  
 {
   id: "2026-11-03-Reuse-Before-You-Retrieve",
   number: "05",
