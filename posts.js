@@ -3,6 +3,46 @@
 // 새 게시물은 README.md의 양식을 복사해 추가하세요.
 const posts = [
   {
+  id: "2026-11-17-OpenDriveVLA",
+  number: "07",
+  example: false,
+  topic: ["VLA", "Autonomous Driving"],
+  title: "OpenDriveVLA",
+  subtitle: "Towards End-to-end Autonomous Driving with Large Vision Language Action Model",
+  cover: "OpenDriveVLA",
+  presenter: "정선영",
+  date: "2026-11-17",
+  paper: "https://arxiv.org/abs/2503.23463",
+  author: "Xingcheng Zhou, Xuyuan Han, Feng Yang, Yunpu Ma, Volker Tresp, Alois Knoll",
+  venue: "AAAI 2026",
+  code: "https://github.com/DriveVLA/OpenDriveVLA",
+  pdf: "slides/2026-11-17-OpenDriveVLA.pdf",
+  summary: "OpenDriveVLA integrates structured 2D and 3D visual representations, ego vehicle states, and language commands through hierarchical vision-language alignment and autoregressive agent-environment-ego interaction modeling to generate spatially grounded driving trajectories, achieving strong performance on nuScenes open-loop planning and driving question answering.",
+  discussion: `##### Model Scaling and Performance
+- **Question:** While the strong performance of the 0.5B model demonstrates the competitiveness of lightweight models, should the weaker performance of larger models also be interpreted positively?
+- **Observation:** In Table III, the 0.5B model outperforms the 3B and 7B variants on several metrics, with no consistent improvement as model size increases.
+- **Authors' Discussion:** The appendix suggests insufficient data scale and diversity, reliance on language priors, and optimization sensitivity as possible explanations.
+
+##### Does Planning Actually Use Visual Information?
+- **Question:** Despite the emphasis on 3D visual grounding, how much does trajectory planning actually use visual information?
+- **Observation:** Table IV shows a relatively small performance decrease when visual input is removed, recalling the blind planning problem discussed in a previously reviewed paper.
+- **Related Work:** Grounding Driving VLA via Inverse Kinematics (Park & Shim, 2026).
+- **Finding:** The cited work reports that existing driving VLAs, including OpenDriveVLA, produce nearly unchanged trajectories even when a vehicle is synthetically inserted ahead.
+- **Interpretation:** This suggests shortcut learning that relies on ego status and text commands rather than visual information.
+- **Approach:** Learn future visual state prediction and generate trajectories with an inverse kinematics network that receives only the current and predicted future visual states to suppress shortcuts.
+
+#### QA 🙋
+
+- **(8p) Vision-text alignment에서 visual representation을 language 쪽 latent space에 정렬하면서 vision과 text 사이에 modality gap이 생기지는 않았을까?**  
+  ➡️ Alignment 자체가 modality gap을 줄이기 위한 과정이다. Visual encoder와 LLM을 freeze하고 projector만 학습한 것도 visual token을 language domain으로 정렬하면서 기존 능력이 손실되는 것을 막기 위한 것으로 생각했다. 또한 trajectory 생성과 driving QA 응답을 수행하므로, text를 vision 쪽으로 가져오는 것보다 vision을 language 쪽으로 정렬하는 것이 task에 더 맞는다고 보았다.  
+  **[추가 확인한 내용]** Alignment를 수행했다는 사실만으로 modality gap이 완전히 사라졌다고 할 수는 없다. Vision-to-language 정렬은 기존 LLM을 활용하기 위한 설계이며, 반대 방향보다 우수하다는 근거는 제시되지 않았다.
+
+- **(9p) Training에서 semantic reasoning pattern을 내재화했다는 것을 어떻게 알 수 있는가? 다른 조건을 모두 통제하고 CoT와 instruction tuning만 조작변인으로 두어 비교했는지, 그 결과 비슷하거나 더 좋은 성능을 확인해서 내재화했다고 주장하는 것인지 궁금하다.**  
+  ➡️ Driving QA dataset을 이용한 instruction tuning으로 high-level driving knowledge를 학습한 것을 semantic reasoning pattern의 내재화라고 표현한 것 같다.  
+  **[추가 확인한 내용]** 해당 학습 단계인 Stage 2의 ablation study는 진행했지만, 내재화를 직접 검증하거나 다른 조건을 통제한 채 CoT와 비교한 실험은 아니었다. Appendix에서도 current limitation으로 explicit CoT의 부재가 복잡한 상황의 추론을 제한할 수 있음을 언급한다. 따라서 학습 단계의 효과와 내재화의 근거를 구분하고, explicit CoT 대비 효과를 검증할 필요가 있다고 생각한다.`
+},
+  
+  {
   id: "2026-11-14-Geometric-Distillation",
   number: "06",
   example: false,
