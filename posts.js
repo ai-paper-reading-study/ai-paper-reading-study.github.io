@@ -2,6 +2,64 @@
 // author: 논문 저자 이름, venue: 학회 / 저널명 (필요하면 연도 포함)
 // 새 게시물은 README.md의 양식을 복사해 추가하세요.
 const posts = [
+{
+  id: "2026-11-17-OLKTTS",
+  number: "07", // 우리 스터디 회차 번호
+  example: false, // 딱히 상관 없음
+  topic: ["Omnimodal", "LLM", "Cross-Modal Alignment", "Reasoning"],
+  title: "Omni-Modal LLMs Know More Than They Say",
+  subtitle: "",
+  cover: "OLKMTTS", // 갤러리형일때만 표시됨. 지금은 리스트형이라서 화면에 표시 X
+  presenter: "이정연",
+  date: "2026-11-17", // 발표 날짜
+  paper: "https://arxiv.org/pdf/2610.16135",
+  author: "Na Min An, et al.",
+  venue: "ArXiv Preprint",
+  code: "https://github.com/naver-ai/OmniLLM", // 논문이 공개한 깃허브 등 코드 있다면 링크 첨부 가능
+  pdf: "slides/2026-11-17-OLKTTS.pdf",
+  summary: "This paper identifies the *knows-but-cannot-say* phenomenon in omni-modal LLMs through Token-level Modality Alignment (TMA) analysis and proposes **OmniCatalyst**, a perceive-then-infer strategy that supplements original multimodal inputs with self-generated textual descriptions to improve access to non-textual knowledge, multimodal reasoning, and balanced modality utilization.",
+  discussion: `#### Discussion
+
+1. **Generalizability Beyond Audio**
+   - Does OmniCatalyst's advantage over Self-CoT extend to vision-centric tasks or conditions with degraded visual information?
+   - Further evaluation could distinguish audio-specific gains from a general benefit of verbalizing underutilized modalities.
+
+2. **Faithfulness of Self-Generated Descriptions**
+   - Performance improvements demonstrate the utility of generated descriptions, while TMA and attention analyses suggest improved access to non-textual information during generation.
+   - However, these results do not directly establish whether the descriptions faithfully reflect the original inputs.
+
+---
+
+#### Research Idea
+
+1. **Combining Modality Description with Reasoning**
+   - **RQ:** Can integrating OmniCatalyst with CoT and fidelity-aware RL improve multimodal reasoning?
+   - **Method:** Compare direct answering, CoT, OmniCatalyst, and **Description → Reasoning → Answer**.
+   - **Extension:** Compare outcome-only RL rewards with rewards that additionally encourage description fidelity.
+
+2. **Verification and Correction of Generated Descriptions**
+   - **RQ:** Do models over-rely on inaccurate descriptions, and can grounding-based verification reduce resulting errors?
+   - **Method:** Extract task-relevant claims from generated descriptions, verify them against the original inputs, and correct unsupported claims before answering.
+   - **Experiment:** Compare no description, self-generated descriptions, verified/corrected descriptions, and deliberately corrupted descriptions.
+   - **Evaluation:** Description faithfulness, description-induced error rate, answer recovery rate, and computational cost.
+   - **Hypothesis:** Textualization improves information accessibility but may propagate errors; grounding-based verification could improve answer reliability.
+
+---
+
+#### Q&A
+
+1. **Why does masking high-TMA tokens degrade reasoning performance while perceptual knowledge remains relatively stable?**
+   - TMA primarily reflects information accessibility during response generation, rather than the presence of perceptual knowledge itself. This supports the *knows-but-cannot-say* phenomenon.
+
+2. **How does Self-CoT differ from OmniCatalyst? Are their intermediate outputs compared?**
+   - Self-CoT provides an additional opportunity to reconsider an initial answer, whereas OmniCatalyst explicitly extracts non-textual information before answering.
+   - The paper emphasizes performance comparisons and OmniCatalyst examples rather than a detailed qualitative comparison of their intermediate outputs.
+
+3. **Do the visualization results follow the same OmniCatalyst process?**
+   - The visualizations analyze modality-token alignment and attention within the OmniCatalyst framework, using TMA-based analysis to examine information accessibility during generation.
+`
+},
+  
   {
   id: "2026-11-17-OpenDriveVLA",
   number: "07",
