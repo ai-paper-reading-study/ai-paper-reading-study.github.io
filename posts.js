@@ -17,7 +17,7 @@ const posts = [
   venue: "ArXiv Preprint",
   code: "https://github.com/naver-ai/OmniLLM", // 논문이 공개한 깃허브 등 코드 있다면 링크 첨부 가능
   pdf: "slides/2026-11-17-OLKTTS.pdf",
-  summary: "This paper identifies the *knows-but-cannot-say* phenomenon in omni-modal LLMs through Token-level Modality Alignment (TMA) analysis and proposes **OmniCatalyst**, a perceive-then-infer strategy that supplements original multimodal inputs with self-generated textual descriptions to improve access to non-textual knowledge, multimodal reasoning, and balanced modality utilization.",
+  summary: "This paper identifies the 'knows-but-cannot-say' phenomenon in omni-modal LLMs through Token-level Modality Alignment (TMA) analysis and proposes Omni-Catalyst, a perceive-then-infer strategy that supplements original multimodal inputs with self-generated textual descriptions to improve access to non-textual knowledge, multimodal reasoning, and balanced modality utilization.",
   discussion: `#### Discussion
 
 1. **Generalizability Beyond Audio**
