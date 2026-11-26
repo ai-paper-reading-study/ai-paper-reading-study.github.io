@@ -22,7 +22,7 @@ const posts = [
   discussion: `##### How Much Does Planning Depend on Human-Provided Subgoals?
 - **Question:** How much does pick-and-place success depend on human-provided task decomposition?
 - **Observation:** Figure 10 provides a sequence of goal images corresponding to grasping the object, moving it near the target location, and placing it down.
-- The model selects the actions for each stage, while the intermediate goals and switching times are specified in advance.
+  The model selects the actions for each stage, while the intermediate goals and switching times are specified in advance.
 - **Proposed Experiment:** Compare success rates with intermediate subgoal images versus only the final goal image, keeping the initial state, final goal, and action budget fixed to assess how much the planner benefits from externally provided task decomposition.
 
 ##### Does Replanning at Every Step Become a Bottleneck?
@@ -30,8 +30,8 @@ const posts = [
 - **Authors' Discussion:** Appendix B.2 states that the experimental tasks were relatively greedy, making a planning horizon of H = 1 sufficient; longer horizons also worked to some extent but required more time per planning call.
 - **Discussion:** As the horizon increases, could executing only the first action and replanning at the next step become a bottleneck in total execution time?
 - **Proposed Experiment:** Let H denote the number of actions planned at once and K the number executed before replanning.
-- Compare (H, K) = (1, 1) and (4, 1) to measure the cost of increasing the planning horizon.
-- With H = 4, compare K = 1, 2, and 4 to evaluate how replanning frequency affects total execution time and task success.
+  Compare (H, K) = (1, 1) and (4, 1) to measure the cost of increasing the planning horizon.
+  With H = 4, compare K = 1, 2, and 4 to evaluate how replanning frequency affects total execution time and task success.
 
 #### QA 🙋
 
