@@ -37,6 +37,64 @@ const posts = [
 
 - **(11p) Energy minimization에서 energy는 무엇을 의미하는가?**  
   ➡️ 여기서 energy는 후보 action sequence를 실행했을 때 world model이 예측한 최종 representation과 goal image의 representation 사이의 L1 distance. 값이 작을수록 모델이 예측한 결과가 목표에 가깝다는 뜻이다. CEM은 여러 action sequence를 sampling하고, energy가 낮은 상위 후보들의 평균과 분산으로 sampling 분포를 반복적으로 업데이트해 목표에 가까워지는 action sequence를 찾는다.`
+  },
+
+{
+  id: "2026-11-17-OLKTTS",
+  number: "07", // 우리 스터디 회차 번호
+  example: false, // 딱히 상관 없음
+  topic: ["Omnimodal", "LLM", "Cross-Modal Alignment", "Reasoning"],
+  title: "Omni-Modal LLMs Know More Than They Say",
+  subtitle: "",
+  cover: "OLKMTTS", // 갤러리형일때만 표시됨. 지금은 리스트형이라서 화면에 표시 X
+  presenter: "이정연",
+  date: "2026-11-17", // 발표 날짜
+  paper: "https://arxiv.org/pdf/2610.16135",
+  author: "Na Min An, et al.",
+  venue: "ArXiv Preprint",
+  code: "https://github.com/naver-ai/OmniLLM", // 논문이 공개한 깃허브 등 코드 있다면 링크 첨부 가능
+  pdf: "slides/2026-11-17-OLKTTS.pdf",
+  summary: "This paper identifies the 'knows-but-cannot-say' phenomenon in omni-modal LLMs through Token-level Modality Alignment (TMA) analysis and proposes Omni-Catalyst, a perceive-then-infer strategy that supplements original multimodal inputs with self-generated textual descriptions to improve access to non-textual knowledge, multimodal reasoning, and balanced modality utilization.",
+  discussion: `#### Discussion
+
+1. **Generalizability Beyond Audio**
+   - Does OmniCatalyst's advantage over Self-CoT extend to vision-centric tasks or conditions with degraded visual information?
+   - Further evaluation could distinguish audio-specific gains from a general benefit of verbalizing underutilized modalities.
+
+2. **Faithfulness of Self-Generated Descriptions**
+   - Performance improvements demonstrate the utility of generated descriptions, while TMA and attention analyses suggest improved access to non-textual information during generation.
+   - However, these results do not directly establish whether the descriptions faithfully reflect the original inputs.
+
+---
+
+#### Research Idea
+
+1. **Combining Modality Description with Reasoning**
+   - **RQ:** Can integrating OmniCatalyst with CoT and fidelity-aware RL improve multimodal reasoning?
+   - **Method:** Compare direct answering, CoT, OmniCatalyst, and **Description → Reasoning → Answer**.
+   - **Extension:** Compare outcome-only RL rewards with rewards that additionally encourage description fidelity.
+
+2. **Verification and Correction of Generated Descriptions**
+   - **RQ:** Do models over-rely on inaccurate descriptions, and can grounding-based verification reduce resulting errors?
+   - **Method:** Extract task-relevant claims from generated descriptions, verify them against the original inputs, and correct unsupported claims before answering.
+   - **Experiment:** Compare no description, self-generated descriptions, verified/corrected descriptions, and deliberately corrupted descriptions.
+   - **Evaluation:** Description faithfulness, description-induced error rate, answer recovery rate, and computational cost.
+   - **Hypothesis:** Textualization improves information accessibility but may propagate errors; grounding-based verification could improve answer reliability.
+
+---
+
+#### Q&A
+
+1. **Why does masking high-TMA tokens degrade reasoning performance while perceptual knowledge remains relatively stable?**
+   - TMA primarily reflects information accessibility during response generation, rather than the presence of perceptual knowledge itself. This supports the *knows-but-cannot-say* phenomenon.
+
+2. **How does Self-CoT differ from OmniCatalyst? Are their intermediate outputs compared?**
+   - Self-CoT provides an additional opportunity to reconsider an initial answer, whereas OmniCatalyst explicitly extracts non-textual information before answering.
+   - The paper emphasizes performance comparisons and OmniCatalyst examples rather than a detailed qualitative comparison of their intermediate outputs.
+
+3. **Do the visualization results follow the same OmniCatalyst process?**
+   - The visualizations analyze modality-token alignment and attention within the OmniCatalyst framework, using TMA-based analysis to examine information accessibility during generation.
+`
 },
   
   {
@@ -109,6 +167,119 @@ const posts = [
 },
   
 {
+  id: "2026-11-14-OmniVinci",
+  number: "06", // 우리 스터디 회차 번호
+  example: false, // 딱히 상관 없음
+  topic: ["Omnimodal", "LLM"],
+  title: "OmniVinci",
+  subtitle: "Enhancing Architecture and Data for Omni-Modal Understanding LLM",
+  cover: "OmniVinci", // 갤러리형일때만 표시됨. 지금은 리스트형이라서 화면에 표시 X
+  presenter: "이정연",
+  date: "2026-11-14", // 발표 날짜
+  paper: "https://arxiv.org/pdf/2510.15870v2",
+  author: "Hanrong Ye, et al. (NVIDIA)",
+  venue: "ICLR 2026",
+  code: "https://github.com/NVlabs/OmniVinci", // 논문이 공개한 깃허브 등 코드 있다면 링크 첨부 가능
+  pdf: "slides/2026-11-14-OmniVinci.pdf",
+  summary: "OmniVinci improves omni-modal understanding through contrastive vision–audio alignment with OmniAlignNet, temporal synchronization via Temporal Embedding Grouping and Constrained Rotary Time Embedding, and joint training on 24 million curated and synthesized conversations.",
+  discussion: `#### Limitations
+
+1. **Understanding-Centric Architecture**
+   - Native output is text; speech relies on external TTS backends, without end-to-end any-to-any generation.
+
+2. **Coarse-Grained Cross-Modal Alignment**
+   - Clip-level alignment does not explicitly enforce object–sound or event-level correspondence.
+   - TEG and CRTE encode temporal relationships, but fine-grained synchronization remains insufficiently validated.
+
+3. **Uneven Performance and Limited Controlled Comparisons**
+   - OmniVinci trails Qwen2.5-Omni on OmniBench (46.47 vs. 56.13), indicating room for improvement in image–audio understanding.
+   - CRTE’s advantage over TMRoPE remains unestablished without a controlled comparison.
+
+#### Research Ideas
+
+1. **Fine-Grained Cross-Modal Alignment**
+   - **RQ:** Is clip-level contrastive learning sufficient for fine-grained audiovisual correspondence?
+   - Introduce segment/event-level contrastive objectives and object–sound grounding; evaluate audiovisual event localization and temporal grounding.
+
+2. **Cross-Modal Interaction vs. Modality Bias**
+   - **RQ:** Do performance gains reflect cross-modal interaction or reliance on a dominant modality?
+   - Compare aligned inputs with single-modality inputs, mismatched audio–video pairs, and temporally shifted pairs; analyze accuracy changes and error patterns on tasks requiring both modalities.
+
+3. **Generalization of Alignment Methods**
+   - **RQ:** Do OmniVinci’s alignment methods generalize across architectures and tasks?
+   - Compare CRTE and TMRoPE-based alternatives under matched training conditions; extend the existing incremental ablations with factorial tests of OmniAlignNet, TEG, and CRTE, alongside task-level OmniBench analysis.
+
+#### Q&A
+
+1. **Did vision degradation motivate omni-modal joint training?**
+   - Yes. Appendix C.2.2 explicitly reports weaker visual understanding after audio training and identifies this as a motivation for subsequent joint training.
+
+2. **Does the paper evaluate individual modality capabilities?**
+   - Yes. Sections 4.2.2–4.2.4 report audio, video, and image evaluations. However, final-model benchmark results do not substitute for systematic checkpoint-by-checkpoint evaluation of forgetting and recovery.
+`
+},
+  
+{
+  id: "2026-11-03-Qwen2.5-Omni",
+  number: "05", // 우리 스터디 회차 번호
+  example: false, // 딱히 상관 없음
+  topic: ["Omnimodal", "LLM"],
+  title: "Qwen2.5-Omni",
+  subtitle: "Technical Report",
+  cover: "Qwen2.5-Omni", // 갤러리형일때만 표시됨. 지금은 리스트형이라서 화면에 표시 X
+  presenter: "이정연",
+  date: "2026-11-03", // 발표 날짜
+  paper: "https://arxiv.org/pdf/2503.20215",
+  author: "Qwen Team",
+  venue: "arXiv Preprint",
+  code: "https://github.com/QwenLM/Qwen2.5-Omni", // 논문이 공개한 깃허브 등 코드 있다면 링크 첨부 가능
+  pdf: "slides/2026-11-03-Qwen2.5-Omni.pdf",
+  summary: "Qwen2.5-Omni integrates text, image, audio, and video understanding with concurrent streaming text and speech generation through a Thinker–Talker architecture, using TMRoPE to temporally align audio–video inputs and a dual-track autoregressive Talker conditioned on Thinker representations and text tokens to generate speech.",
+  discussion: `#### Limitations and Future Directions
+
+- **Limitation:** Output modalities are limited to text and speech.
+- **Authors’ Future Work:** Extend generation to images, videos, and music.
+- **Additional Idea:** Explore 3D generation and structured outputs, such as executable code, tables, and rendered charts.
+
+#### Research Ideas
+
+**1. Context-Aware Speech Generation**
+
+- **RQ:** Do Thinker’s hidden representations help Talker produce contextually appropriate prosody and emotion?
+- **Experiment:** Fix the response text while varying the audiovisual context, comparing Thinker–Talker with text-only TTS and a context-ablated variant.
+- **Example:** “It’s okay” when comforting someone versus accepting a request.
+- **Evaluation:** Human ratings of contextual appropriateness, emotion, and prosody, alongside speaking-rate analysis and word error rate.
+- **Expected Insight:** Determine whether speech generation uses contextual information beyond the response text.
+
+**2. Modality Selection under Conflicting or Degraded Inputs**
+
+- **RQ:** Can the model prioritize task-relevant information when visual and auditory cues conflict or become unreliable?
+- **Experiment:** Compare matched, conflicting, modality-ablated, and noise-corrupted inputs using paired questions.
+- **Example:** A dog image with a cat’s meow: “Which animal is visible?” versus “Which animal is audible?”
+- **Evaluation:** Accuracy by condition, performance changes after modality removal, and robustness across noise levels.
+- **Expected Insight:** Identify modality biases and sensitivity to input reliability.
+
+#### Discussion and Q&A
+
+**1. Why does an omni-modal model generate only text and speech?**
+
+Multimodal understanding does not automatically enable generation in every input modality. Qwen2.5-Omni focuses on multimodal understanding and simultaneous streaming text–speech responses; image, video, and music generation remain future directions. Comparisons with GPT models should specify the model version and distinguish native capabilities from external tools.
+
+**2. Must all modalities use three-dimensional representations?**
+
+No. TMRoPE uses three positional components—temporal, height, and width—not three-dimensional input embeddings. Text uses identical position IDs across these components, making its positional encoding equivalent to standard 1D RoPE. This is a design choice for representing spatial structure and audiovisual timing, rather than a universal requirement.
+
+**3. How does this compare with AnyGPT and NExT-GPT?**
+
+AnyGPT converts modalities into discrete tokens embedded in the LLM’s shared hidden space. NExT-GPT projects encoder features into LLM-compatible representations. These mechanisms differ from TMRoPE: embedding compatibility and positional encoding address separate problems.
+
+**4. What are the key contributions and empirical results?**
+
+Key contributions include Thinker–Talker, TMRoPE, and streaming input/output processing. In the reported OmniBench evaluation, Qwen2.5-Omni-7B achieved 56.13% average accuracy versus AnyGPT-7B’s 18.04%; this comparison concerns multimodal understanding.
+`
+},
+  
+{
   id: "2026-11-03-Reuse-Before-You-Retrieve",
   number: "05",
   example: false,
@@ -162,6 +333,7 @@ const posts = [
   
 **Related Work**
 
+- OmniBench (2025): Evaluates cross-modal understanding and reasoning across text, image, and audio inputs, without multimodal generation or multi-turn dialogue evaluation.
 - UniM (2026): Any-to-any interleaved evaluation across 7 modalities, without explicit multi-turn dialogue evaluation.
 - MME-Unify (2026): Unified evaluation of multimodal understanding and generation, without sustained multi-turn interaction.
 - IMUG-Bench (2026): Joint understanding and generation in multi-turn dialogues, limited to image–text interactions.
@@ -184,26 +356,16 @@ Develop a **unified multi-turn any-to-any multimodal benchmark** evaluating:
 
 Q1. NExT-GPT도 projection으로 모달리티를 정렬하는데, discrete token으로 통일하는 것과 큰 차이가 있는가?
 
+A1.
 - NExT-GPT: Projection으로 표현 공간을 정렬하지만, 입력과 출력의 표현 방식이 달라 별도의 정렬 과정이 필요하다.
-
 - AnyGPT: 모든 모달리티를 discrete token으로 표현하여 동일한 autoregressive framework에서 모델링한다.
-
 ⇒ 핵심 장점은 LLM의 기존 아키텍처와 next-token prediction objective를 그대로 활용해 통합 학습할 수 있다는 점이다. (△ quantization으로 인한 정보 손실이 발생할 수 있어 discrete token이 항상 우수한 것은 아닐 수 있다.)
-
-NExT-GPT도 projection으로 모달리티를 정렬하는데, discrete token으로 통일하는 것과 큰 차이가 있는가?
-
-NExT-GPT: Projection으로 표현 공간을 정렬하지만, 입력과 출력의 표현 방식이 달라 별도의 정렬 과정이 필요하다.
-
-AnyGPT: 모든 모달리티를 discrete token으로 표현하여 동일한 autoregressive framework에서 모델링한다.
-
-⇒ 핵심 장점은 LLM의 기존 아키텍처와 next-token prediction objective를 그대로 활용해 통합 학습할 수 있다는 점이다. 단, 양자화로 인한 정보 손실이 발생할 수 있어 discrete token이 항상 우수한 것은 아니다.
 
 Q2. AnyGPT는 모달리티별 복원 방식이 diffusion/decoding으로 다른데, 오히려 모든 모달리티의 생성에 diffusion을 사용하는 NExT-GPT가 더 통일된 방식 아닌가?
 
+A2.
 - NExT-GPT: Diffusion 기반 생성 모델을 활용하지만, 모달리티마다 서로 다른 모델과 출력 projection을 사용한다.
-
 - AnyGPT: LLM이 모든 모달리티의 discrete token을 직접 예측하고, 최종 콘텐츠는 모달리티별 decoder로 복원한다.
-
 ⇒ AnyGPT의 통일성은 복원 방식이 아니라 LLM 내부의 unified sequence modeling에 있다.
 `
 },
