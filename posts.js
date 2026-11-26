@@ -2,6 +2,43 @@
 // author: 논문 저자 이름, venue: 학회 / 저널명 (필요하면 연도 포함)
 // 새 게시물은 README.md의 양식을 복사해 추가하세요.
 const posts = [
+
+  {
+  id: "2026-11-24-V-JEPA-2",
+  number: "08",
+  example: false,
+  topic: ["Video Self-Supervised Learning", "World Model", "Robot Planning"],
+  title: "V-JEPA 2",
+  subtitle: "Self-Supervised Video Models Enable Understanding, Prediction and Planning",
+  cover: "V-JEPA 2",
+  presenter: "정선영",
+  date: "2026-11-24",
+  paper: "https://arxiv.org/abs/2506.09985",
+  author: "Mahmoud Assran, et al.",
+  venue: "arXiv 2025",
+  code: "https://github.com/facebookresearch/vjepa2",
+  pdf: "slides/2026-11-24-V-JEPA-2.pdf",
+  summary: "V-JEPA 2 learns predictive video representations from over one million hours of internet video to support motion understanding, action anticipation, and video question answering through LLM alignment, while action-conditioned post-training on less than 62 hours of robot interaction data enables V-JEPA 2-AC to perform zero-shot pick-and-place in new environments through image-goal planning without task-specific training or rewards.",
+  discussion: `##### How Much Does Planning Depend on Human-Provided Subgoals?
+- **Question:** How much does pick-and-place success depend on human-provided task decomposition?
+- **Observation:** Figure 10 provides a sequence of goal images corresponding to grasping the object, moving it near the target location, and placing it down.
+- The model selects the actions for each stage, while the intermediate goals and switching times are specified in advance.
+- **Proposed Experiment:** Compare success rates with intermediate subgoal images versus only the final goal image, keeping the initial state, final goal, and action budget fixed to assess how much the planner benefits from externally provided task decomposition.
+
+##### Does Replanning at Every Step Become a Bottleneck?
+- **Question:** Could planning actions in chunks and executing several steps before observing again reduce replanning frequency while retaining closed-loop execution?
+- **Authors' Discussion:** Appendix B.2 states that the experimental tasks were relatively greedy, making a planning horizon of H = 1 sufficient; longer horizons also worked to some extent but required more time per planning call.
+- **Discussion:** As the horizon increases, could executing only the first action and replanning at the next step become a bottleneck in total execution time?
+- **Proposed Experiment:** Let H denote the number of actions planned at once and K the number executed before replanning.
+- Compare (H, K) = (1, 1) and (4, 1) to measure the cost of increasing the planning horizon.
+- With H = 4, compare K = 1, 2, and 4 to evaluate how replanning frequency affects total execution time and task success.
+
+#### QA 🙋
+
+- **(11p) Energy minimization에서 energy는 무엇을 의미하는가?**  
+  ➡️ 여기서 energy는 후보 action sequence를 실행했을 때 world model이 예측한 최종 representation과 goal image의 representation 사이의 L1 distance. 값이 작을수록 모델이 예측한 결과가 목표에 가깝다는 뜻이다. CEM은 여러 action sequence를 sampling하고, energy가 낮은 상위 후보들의 평균과 분산으로 sampling 분포를 반복적으로 업데이트해 목표에 가까워지는 action sequence를 찾는다.`
+},
+  
   {
   id: "2026-11-17-OpenDriveVLA",
   number: "07",
